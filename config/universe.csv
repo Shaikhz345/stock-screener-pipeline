@@ -1,0 +1,51 @@
+ticker,company_name,asset_type,exchange
+CHD,Church & Dwight Co.,Stock,NYSE
+CRM,Salesforce Inc.,Stock,NYSE
+CVX,Chevron Corporation,Stock,NYSE
+ECL,Ecolab Inc.,Stock,NYSE
+HD,The Home Depot,Stock,NYSE
+ICFI,ICF International,Stock,Nasdaq
+JNJ,Johnson & Johnson,Stock,NYSE
+MLI,Mueller Industries,Stock,NYSE
+MMM,3M Company,Stock,NYSE
+MSM,MSC Industrial Direct,Stock,NYSE
+NVDA,NVIDIA Corporation,Stock,Nasdaq
+RSG,Republic Services,Stock,NYSE
+SAIA,Saia Inc.,Stock,Nasdaq
+WM,WM (Waste Management),Stock,NYSE
+TTC,The Toro Company,Stock,NYSE
+WSO,Watsco Inc.,Stock,NYSE
+XOM,Exxon Mobil,Stock,NYSE
+AAPL,Apple Inc.,Stock,Nasdaq
+TSLA,Tesla Inc.,Stock,Nasdaq
+V,Visa Inc.,Stock,NYSE
+MA,Mastercard,Stock,NYSE
+KO,The Coca-Cola Company,Stock,NYSE
+PG,Procter & Gamble,Stock,NYSE
+CSCO,Cisco Systems,Stock,Nasdaq
+MRK,Merck & Co.,Stock,NYSE
+ORCL,Oracle Corporation,Stock,NYSE
+TXN,Texas Instruments,Stock,Nasdaq
+INTC,Intel Corporation,Stock,Nasdaq
+UNP,Union Pacific,Stock,NYSE
+SNOW,Snowflake Inc.,Stock,NYSE
+CSX,CSX Corporation,Stock,Nasdaq
+UPS,United Parcel Service,Stock,NYSE
+NUE,Nucor Corporation,Stock,NYSE
+MSA,MSA Safety,Stock,NYSE
+EOG,EOG Resources,Stock,NYSE
+MDT,Medtronic,Stock,NYSE
+CL,Colgate-Palmolive,Stock,NYSE
+TSM,Taiwan Semiconductor Manufacturing,Stock,NYSE
+HLAL,Wahed FTSE USA Shariah ETF,ETF,Nasdaq
+SPUS,SP Funds S&P 500 Sharia Industry Exclusions ETF,ETF,NYSE Arca
+MNZL,Manzil Russell Halal USA Broad Market ETF,ETF,Nasdaq
+UMMA,Wahed Dow Jones Islamic World ETF,ETF,Nasdaq
+SPSK,SP Funds Dow Jones Global Sukuk ETF,ETF,NYSE Arca
+AMGR,Amana Growth ETF,ETF,Nasdaq
+SPTE,SP Funds S&P Global Technology ETF,ETF,NYSE Arca
+SMH,VanEck Semiconductor ETF,ETF,Nasdaq
+VDE,Vanguard Energy ETF,ETF,NYSE Arca
+XLB,Materials Select Sector SPDR Fund,ETF,NYSE Arca
+PAVE,Global X U.S. Infrastructure Development ETF,ETF,Cboe BZX
+ITB,iShares U.S. Home Construction ETF,ETF,Cboe BZX
