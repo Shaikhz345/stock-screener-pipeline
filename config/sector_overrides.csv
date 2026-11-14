@@ -1,0 +1,12 @@
+ticker,sector_short,reason
+V,Money,Payment network; SIC 7389 groups it with generic business services
+MA,Money,Payment network; SIC 7389 groups it with generic business services
+MMM,Manuf,Diversified industrial; SIC 3841 reflects only its medical segment
+MSA,Manuf,Safety equipment maker; SIC 3842 places it in healthcare
+PG,NoDur,Household consumer products; Fama-French 12 puts soap and cosmetics in Chems
+CL,NoDur,Household consumer products; Fama-French 12 puts soap and cosmetics in Chems
+CHD,NoDur,Household consumer products; Fama-French 12 puts soap and cosmetics in Chems
+CSX,Trans,Railroad; Fama-French 12 has no transportation sector
+UNP,Trans,Railroad; Fama-French 12 has no transportation sector
+UPS,Trans,Freight and parcel delivery; Fama-French 12 has no transportation sector
+SAIA,Trans,Trucking; Fama-French 12 has no transportation sector
