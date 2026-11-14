@@ -35,6 +35,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--days", type=int, default=7,
                         help="How many days back to pull")
+    parser.add_argument("--backfill", action="store_true",
+                        help="Save to the backfill folder instead of the daily folder")
     args = parser.parse_args()
 
     token = os.environ["TIINGO_API_KEY"]
@@ -57,7 +59,8 @@ def main():
 
 
         body = "\n".join(json.dumps({"ticker": ticker, **row}) for row in rows)
-        key = f"raw/tiingo/daily_prices/ingest_date={ingest_date}/{ticker}.json"
+        folder = "daily_prices_backfill" if args.backfill else "daily_prices"
+        key = f"raw/tiingo/{folder}/ingest_date={ingest_date}/{ticker}.json"
         s3.put_object(Bucket=bucket, Key=key, Body=body,
                       ContentType="application/json")
         print(f"  {ticker}: {len(rows)} rows saved")
