@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: sec
+    description: SEC EDGAR company facts, flattened to one row per reported value by scripts/flatten_sec_facts.py
+    database: awsdatacatalog
+    schema: stock_screener_raw
+    tables:
+      - name: sec_companyfacts_flat
+        description: Every value each company has reported, partitioned by ingest_date. Each load is a full snapshot
