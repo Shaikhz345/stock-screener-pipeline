@@ -224,3 +224,9 @@ __marimo__/
 *.pem
 aws_credentials*
 .DS_Store
+
+# dbt
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml

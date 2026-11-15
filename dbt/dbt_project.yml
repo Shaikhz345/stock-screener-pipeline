@@ -1,0 +1,14 @@
+name: stock_screener
+version: "1.0.0"
+profile: stock_screener
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+models:
+  stock_screener:
+    staging:
+      +materialized: view
+      +schema: staging

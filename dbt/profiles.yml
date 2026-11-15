@@ -1,0 +1,13 @@
+stock_screener:
+  target: dev
+  outputs:
+    dev:
+      type: athena
+      region_name: us-east-1
+      s3_staging_dir: s3://zs-stock-screener-data/athena-results/dbt/
+      s3_data_dir: s3://zs-stock-screener-data/warehouse/
+      s3_data_naming: schema_table
+      database: awsdatacatalog
+      schema: stock_screener
+      threads: 4
+      num_retries: 3
