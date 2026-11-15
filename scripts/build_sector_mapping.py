@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SOURCE = "reference/Siccodes12.txt"
-OUTPUT = "config/sector_mapping.csv"
+OUTPUT = "dbt/seeds/sector_mapping.csv"
 
 # A header line looks like: " 1 NoDur  Consumer NonDurables -- Food, ..."
 HEADER = re.compile(r"^\s*(\d{1,2})\s+([A-Za-z]+)\s+(.+?)\s*$")

@@ -9,7 +9,7 @@ load_dotenv()
 headers = {"Authorization": f"Token {os.environ['TIINGO_API_KEY']}"}
 start = (date.today() - timedelta(days=365)).isoformat()
 
-with open("config/universe.csv") as f:
+with open("dbt/seeds/universe.csv") as f:
     universe = list(csv.DictReader(f))
 
 results = []

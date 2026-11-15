@@ -16,7 +16,7 @@ SUBMISSIONS_URL = "https://data.sec.gov/submissions/CIK{cik}.json"
 FACTS_URL = "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json"
 
 
-def load_stocks(path="config/universe.csv"):
+def load_stocks(path="dbt/seeds/universe.csv"):
     with open(path) as f:
         return [row["ticker"] for row in csv.DictReader(f)
                 if row["asset_type"] == "Stock"]

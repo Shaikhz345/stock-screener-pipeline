@@ -12,3 +12,16 @@ models:
     staging:
       +materialized: view
       +schema: staging
+
+seeds:
+  stock_screener:
+    +schema: seeds
+    sector_mapping:
+      +column_types:
+        sector_code: int
+        sic_start: int
+        sic_end: int
+    sector_rule_overrides:
+      +column_types:
+        sic_start: int
+        sic_end: int

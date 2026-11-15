@@ -15,7 +15,7 @@ load_dotenv()
 TIINGO_URL = "https://api.tiingo.com/tiingo/daily/{ticker}/prices"
 
 
-def load_universe(path="config/universe.csv"):
+def load_universe(path="dbt/seeds/universe.csv"):
     with open(path) as f:
         return [row["ticker"] for row in csv.DictReader(f)]
 
