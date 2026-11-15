@@ -57,6 +57,7 @@ packaging==26.3
 parsedatetime==2.6
 pathspec==1.0.4
 protobuf==6.33.6
+pyarrow==26.0.1
 PyAthena==3.34.0
 pycparser==3.12
 pydantic==2.14.3
