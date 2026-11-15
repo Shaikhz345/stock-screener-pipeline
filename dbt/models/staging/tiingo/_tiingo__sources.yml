@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: tiingo
+    description: Raw daily price files from the Tiingo API, landed in S3 by scripts/ingest_prices.py
+    database: awsdatacatalog
+    schema: stock_screener_raw
+    tables:
+      - name: tiingo_daily_prices
+        description: Daily runs with a 7-day lookback, partitioned by ingest_date
+      - name: tiingo_daily_prices_backfill
+        description: One-time 10-year history load, partitioned by ingest_date
