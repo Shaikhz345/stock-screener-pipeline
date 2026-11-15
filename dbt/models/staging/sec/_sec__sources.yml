@@ -2,9 +2,11 @@ version: 2
 
 sources:
   - name: sec
-    description: SEC EDGAR company facts, flattened to one row per reported value by scripts/flatten_sec_facts.py
+    description: SEC EDGAR data, flattened from raw JSON by scripts in scripts/
     database: awsdatacatalog
     schema: stock_screener_raw
     tables:
       - name: sec_companyfacts_flat
         description: Every value each company has reported, partitioned by ingest_date. Each load is a full snapshot
+      - name: sec_company_profiles_flat
+        description: One row per company (name, SIC code, fiscal year end), partitioned by ingest_date. Each load is a full snapshot
