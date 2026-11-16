@@ -31,3 +31,6 @@ seeds:
     sec_tag_map:
       +column_types:
         priority: int
+    cik_history:
+      +column_types:
+        cik: string

@@ -38,6 +38,12 @@ ranked as (
         *,
         case when period_start is null then 'instant' else 'duration' end as period_type,
         date_diff('day', period_start, period_end) + 1 as period_days,
+        -- The first filing to report a period is that period's own annual
+        -- report, so its fiscal year label is the period's fiscal year
+        first_value(filing_fiscal_year) over (
+            partition by ticker, taxonomy, tag, unit, period_start, period_end
+            order by filed_date asc, accession asc
+        ) as original_filing_fiscal_year,
         row_number() over (
             partition by ticker, taxonomy, tag, unit, period_start, period_end
             order by filed_date desc, accession desc
@@ -60,6 +66,7 @@ select
     value,
     filing_fiscal_year,
     filing_fiscal_period,
+    original_filing_fiscal_year,
     form,
     filed_date,
     accession,

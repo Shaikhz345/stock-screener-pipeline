@@ -75,14 +75,15 @@ def main():
 
     total = 0
     for key in latest_keys:
-        ticker = key.split("/")[-1].replace(".json", "")
+        stem = key.split("/")[-1].replace(".json", "")
+        ticker = stem.split("__")[0]
         doc = json.loads(s3.get_object(Bucket=bucket, Key=key)["Body"].read())
         rows = flatten(ticker, doc)
 
         buffer = io.BytesIO()
         pq.write_table(pa.Table.from_pylist(rows, schema=SCHEMA), buffer,
                        compression="snappy")
-        out_key = f"{FLAT_PREFIX}{latest}/{ticker}.parquet"
+        out_key = f"{FLAT_PREFIX}{latest}/{stem}.parquet"
         s3.put_object(Bucket=bucket, Key=out_key, Body=buffer.getvalue())
 
         total += len(rows)

@@ -3,6 +3,7 @@ import csv
 import os
 import sys
 import time
+from collections import defaultdict
 from datetime import date
 
 import boto3
@@ -20,6 +21,15 @@ def load_stocks(path="dbt/seeds/universe.csv"):
     with open(path) as f:
         return [row["ticker"] for row in csv.DictReader(f)
                 if row["asset_type"] == "Stock"]
+
+
+def load_cik_history(path="dbt/seeds/cik_history.csv"):
+    """Every CIK a ticker has used, for companies whose SEC registration changed."""
+    history = defaultdict(list)
+    with open(path) as f:
+        for row in csv.DictReader(f):
+            history[row["ticker"]].append(row["cik"].zfill(10))
+    return history
 
 
 def get_json(session, url):
@@ -41,36 +51,43 @@ def main():
         s3.put_object(Bucket=bucket, Key=key, Body=content,
                       ContentType="application/json")
 
-
+    # 1. Ticker -> current CIK lookup (the SEC pads CIKs to 10 digits)
     lookup, lookup_raw = get_json(session, TICKERS_URL)
     save("company_tickers", "company_tickers", lookup_raw)
     cik_by_ticker = {row["ticker"]: str(row["cik_str"]).zfill(10)
                      for row in lookup.values()}
+    cik_history = load_cik_history()
 
     stocks = load_stocks()
     print(f"Pulling SEC data for {len(stocks)} stocks (ingest date {ingest_date})\n")
     failed = []
     for ticker in stocks:
-        cik = cik_by_ticker.get(ticker)
-        if not cik:
+        current_cik = cik_by_ticker.get(ticker)
+        if not current_cik:
             print(f"  {ticker}: FAILED (not in SEC ticker file)")
             failed.append(ticker)
             continue
+
+        # The current CIK plus any earlier ones from cik_history.csv
+        all_ciks = sorted(set([current_cik] + cik_history.get(ticker, [])))
+
         try:
-            profile, profile_raw = get_json(session, SUBMISSIONS_URL.format(cik=cik))
-            facts, facts_raw = get_json(session, FACTS_URL.format(cik=cik))
+            # Profile: current registration only (one row per company)
+            profile, profile_raw = get_json(session, SUBMISSIONS_URL.format(cik=current_cik))
+            save("submissions", ticker, profile_raw)
+
+            # Facts: every registration, so history isn't lost
+            for cik in all_ciks:
+                facts, facts_raw = get_json(session, FACTS_URL.format(cik=cik))
+                save("companyfacts", f"{ticker}__{cik}", facts_raw)
         except requests.RequestException as e:
             print(f"  {ticker}: FAILED ({e})")
             failed.append(ticker)
             continue
 
-        save("submissions", ticker, profile_raw)
-        save("companyfacts", ticker, facts_raw)
-
-
-        taxonomies = ", ".join(sorted(facts.get("facts", {}).keys()))
+        note = f" | {len(all_ciks)} CIKs" if len(all_ciks) > 1 else ""
         print(f"  {ticker}: SIC {profile.get('sic')} {profile.get('sicDescription')} "
-              f"| FY ends {profile.get('fiscalYearEnd')} | {taxonomies}")
+              f"| FY ends {profile.get('fiscalYearEnd')}{note}")
 
     print(f"\nDone: {len(stocks) - len(failed)} succeeded, {len(failed)} failed")
     if failed:
