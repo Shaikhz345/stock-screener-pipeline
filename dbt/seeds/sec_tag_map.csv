@@ -1,0 +1,11 @@
+metric,taxonomy,tag,unit,priority,note
+revenue,us-gaap,Revenues,USD,1,Total revenue when the company reports it
+revenue,us-gaap,RevenueFromContractWithCustomerExcludingAssessedTax,USD,2,Revenue standard used since 2018
+revenue,us-gaap,RevenueFromContractWithCustomerIncludingAssessedTax,USD,3,Same standard but including sales taxes
+revenue,us-gaap,SalesRevenueNet,USD,4,Older revenue tag used before 2018
+net_income,us-gaap,NetIncomeLoss,USD,1,Profit belonging to the company's shareholders
+net_income,us-gaap,ProfitLoss,USD,2,Profit including minority owners
+eps_diluted,us-gaap,EarningsPerShareDiluted,USD/shares,1,Diluted earnings per share
+eps_diluted,us-gaap,EarningsPerShareBasicAndDiluted,USD/shares,2,Used when basic and diluted are the same
+shares_outstanding,dei,EntityCommonStockSharesOutstanding,shares,1,Shares on the filing's cover page
+shares_outstanding,us-gaap,CommonStockSharesOutstanding,shares,2,Shares on the balance sheet
